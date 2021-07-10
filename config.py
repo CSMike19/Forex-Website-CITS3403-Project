@@ -13,7 +13,7 @@ class Config(object):
 class ProductionConfig(Config):
   ENV='production'
   SECRET_KEY = os.environ['SECRET_KEY'] or 'you-will-never-guess'
-  SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
+  SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL').replace("://", "ql://", 1) or 'sqlite:///' + os.path.join(basedir, 'app.db')
 
 
 class DevelopmentConfig(Config):
