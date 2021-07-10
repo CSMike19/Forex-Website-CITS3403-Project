@@ -9,11 +9,11 @@ def load_user(id):
 # A table to see store users and their details
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(64), index=True)
-    lastname = db.Column(db.String(64), index=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(120), index=True, unique=True)
-    password_hash = db.Column(db.String(128))
+    firstname = db.Column(db.String(256), index=True)
+    lastname = db.Column(db.String(256), index=True)
+    username = db.Column(db.String(256), index=True, unique=True)
+    email = db.Column(db.String(256), index=True, unique=True)
+    password_hash = db.Column(db.String(256))
     num_attempts = db.Column(db.Integer, index=True)
     sessionEnded = db.Column(db.Integer, index=True) #startquiz->set to false(0), finish quiz->set to true(1)
     quizzes = db.relationship('Quiz', backref='author', lazy='dynamic')
@@ -52,13 +52,13 @@ class Quiz(db.Model):
 # https://github.com/anders-m-c/cits3403project       
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    question = db.Column(db.String(64), index=True)
-    correct_choice = db.Column(db.String(64), index=True)
-    choice1 = db.Column(db.String(64), index=True)
-    choice2 = db.Column(db.String(64), index=True)
-    choice3 = db.Column(db.String(64), index=True)
-    choice4 = db.Column(db.String(64), index=True)
-    img = db.Column(db.String(64), index=True)
+    question = db.Column(db.String(256), index=True)
+    correct_choice = db.Column(db.String(256), index=True)
+    choice1 = db.Column(db.String(256), index=True)
+    choice2 = db.Column(db.String(256), index=True)
+    choice3 = db.Column(db.String(256), index=True)
+    choice4 = db.Column(db.String(256), index=True)
+    img = db.Column(db.String(256), index=True)
     quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'))
     
     def __repr__(self):
@@ -68,7 +68,7 @@ class Question(db.Model):
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     questionNum = db.Column(db.Integer, index=True)
-    choice = db.Column(db.String(64), index=True)
+    choice = db.Column(db.String(256), index=True)
     quiz_id = db.Column(db.Integer, db.ForeignKey('quiz.id'))
     
     def __repr__(self):
